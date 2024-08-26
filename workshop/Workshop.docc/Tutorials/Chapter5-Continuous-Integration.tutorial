@@ -1,0 +1,31 @@
+@Tutorial(time: 10) {
+    @Intro(title: "Setting Up Continuous Integration for Swift Testing") {
+        
+        @Image(source: <#file#>, alt: "<#accessible description#>")
+    }
+    
+    @Section(title: "<#text#>") {
+        @ContentAndMedia {
+            Xcode Cloud has also been updated to support Swift Testing.
+            
+            Just like in Xcode, you can view the results of your test suites in the Xcode Cloud tab of App Store Connect. This includes details about the traits that have been defined in your tests. When you organize and relate your tests, Xcode can help you gain insight into problems affecting them. Suites and tags make large collections of tests more efficient to navigate and easier to manage. Back to Jonathan to talk about running test in parallel.
+
+            
+            @Image(source: <#file#>, alt: "<#accessible description#>")
+        }
+        
+        @Steps {
+            @Step {
+                <#text#>
+                
+                @Image(source: <#file#>, alt: "<#accessible description#>")
+            }
+            
+            @Step {
+                <#text#>
+                
+                @Code(name: "<#display name#>", file: <#filename.swift#>)
+            }
+        }
+    }
+}

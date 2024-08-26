@@ -1,0 +1,67 @@
+@Tutorial(time: 20) {
+    @Intro(title: "Migrating a test from XCTest") {
+        Migrate an existing test method or test class written using XCTest.
+        
+        @Image(source: migrate-from-xctest.png, alt: "Illustration on migration from XCTest to Swift Testing")
+    }
+    
+    @Section(title: "Migrate an existing method or test class written using XCTest") {
+        @ContentAndMedia {
+            The testing library provides much of the same functionality of XCTest, but uses its own syntax to declare test functions and types. Here, you’ll learn how to convert XCTest-based content to use the testing library instead.
+            
+            The following table includes a list of the various XCTAssert() functions and their equivalents in the testing library:
+            
+            XCTest       | Swift Testing                          
+            ------------ | ------------------------------------- 
+            |`XCTAssert(x), XCTAssertTrue(x)`       | `#expect(x) |
+            `XCTAssertFalse(x)`     | `#expect(!x)`         
+            `XCTAssertNil(x)`       | `#expect(x == nil)`            
+            `XCTAssertNotNil(x)` | `#expect(x != nil)`
+            `XCTAssertEqual(x, y)` | `#expect(x == y)`
+            `XCTAssertNotEqual(x, y)` | `#expect(x != y)`
+            `XCTAssertIdentical(x, y)` | `#expect(x === y)`
+            `XCTAssertNotIdentical(x, y)` | `#expect(x !== y)`
+            `XCTAssertGreaterThan(x, y)` | `#expect(x > y))`
+            `XCTAssertGreaterThanOrEqual(x, y)` | `#expect(x >= y)`
+            `XCTAssertLessThanOrEqual(x, y)` | `#expect(x <= y)`
+            `XCTAssertLessThan(x, y)` | `#expect(x < y)`
+            `XCTAssertThrowsError(try f())` | `#expect(throws: (any Error).self) { try f() }`
+            `XCTAssertThrowsError(try f()) { error in … }` | `#expect { try f() } throws: { error in return … }`
+            `XCTAssertNoThrow(try f())` | `#expect(throws: Never.self) { try f() }`
+            `try XCTUnwrap(x)` | `try #require(x)`
+            `XCTFail("…")` | `Issue.record("…")`
+            
+        }
+        
+        @Steps {
+            
+            The goal will be to migrate from a test class written with XCTest to Swift Testing
+            @Step {
+                It starts with the module import to replace.
+                
+                // Before
+                import XCTest
+                
+                // After
+                import Testing
+            }
+            
+            @Step {
+                Convert test classes
+                
+                ```swift
+                // Before
+                class FoodTruckTests: XCTestCase {
+                  ...
+                }
+                
+                // After
+                struct FoodTruckTests {
+                  ...
+                }
+                ```
+                
+            }
+        }
+    }
+}

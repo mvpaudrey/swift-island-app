@@ -1,0 +1,327 @@
+@Tutorial(time: 30) {
+    @Intro(title: "Essentials") {
+        This Chapter is dedicated to essentials on Swift Testing. You will learn to write basic test functions and find a way to organise them using Test suites.
+        
+        @Image(source: swift-testing-hero-dark.png, alt: "Swift Testing illustration.")
+    }
+    
+    @Section(title: "Defining test functions") {
+        @ContentAndMedia {
+            In the previous chapter, we have seen the introduction of a new annotation `@Test`. This is one of many macros we are using in Swift Testing.
+            
+            @Image(source: swift-testing-hero-dark.png, alt: "A screenshot of the template selector in Xcode. In the top row, iOS is selected as the platform. In the Application section, App is selected as the template; there's a highlight placed over the Next button at the lower-right of the sheet..")
+        }
+        
+        @Steps {
+            
+            We will discover other macros along the way. The first one is ``#expect`` macro.
+            
+            @Step {
+                [#expect Macro] (https://developer.apple.com/documentation/testing/expect(_:_:sourcelocation:))
+                
+                `#expect` Macro check that an expectation has passed after a condition has been evaluated.
+                
+                To declare a test function, write a Swift function declaration that doesn’t take any arguments, then prefix its name with the `@Test attribute
+                
+                1. Open the previous created test file add new function with @Test attribute
+                2. Use ``#expect`` macro to write tests
+                
+                @Code(name: "ContactDataTests.swift", file: 05-use-expect.swift) {
+                    @Image(source: 01-test-init-passed.png, alt: "A screenshot of the test result after implementing `testInitWithValues`")
+                }             
+            }
+            
+            @Comment {
+                ```swift
+                struct ContactDataTests {
+
+                    // Test initialization and basic property assignment
+                    @Test func testInitWithValues() {
+                        let contact = ContactData(name: "John Doe", company: "Tech Corp", phone: "1234567890", email: "john@example.com", url: "https://example.com")
+
+                        // Use `#expect` to check every property
+                        #expect(contact.name == "John Doe")
+                        #expect(contact.company == "Tech Corp")
+                        #expect(contact.phone == "1234567890")
+                        #expect(contact.email == "john@example.com")
+                        #expect(contact.url == "https://example.com")
+                    }
+                }
+                ```
+            }
+            
+            In the same way we have tested initialization, let's continue by testing a computed property from the ``ContactData`` which is `vCard`.
+            If you are using your own project, write a test that can validate this assertion
+            
+            @Step {
+                
+                Implement `testVCardGeneration` test function. using #expect. (see picture)
+                
+                @Code(name: "ContactDataTests.swift", file: 06-test-contactdata-vcard.swift) {
+                    @Image(source: 02-contact-vCard-test-passed.png, alt: "A screenshot of the test result after implementing `testVCardGeneration`")
+                } 
+            }
+            
+            @Comment {
+                
+                ```swift
+                @Test func testVCardGeneration() async throws {
+                    let contact = ContactData(name: "John Doe", company: "Tech Corp", phone: "1234567890", email: "john@example.com", url: "https://example.com")
+
+                    let expectedVCard = """
+                        BEGIN:VCARD
+                        VERSION:3.0
+                        FN:John Doe
+                        ORG:Tech Corp
+                        TEL:1234567890
+                        EMAIL:john@example.com
+                        URL:https://example.com
+                        END:VCARD
+                        """
+
+                    #expect(contact.vCard == expectedVCard)
+                }
+                ```
+            }
+            
+            @Step {
+                
+                [#require Macro] (https://developer.apple.com/documentation/testing)
+                
+                `#require` checks that an expectation has passed after a condition has been evaluated and throw an error if it failed.
+                
+                In Swift Island app, there is a ``KeychainManager`` class want to unit test.
+                
+                1. Create a `KeychainManagerTests.swift` class alongside other tests class
+                2. Write a Unit Test on Keychain manager to test storing and retrieving of a decodable object 
+                
+                @Code(name: "KeychainManagerTests.swift", file: 07-test-keychainmanager.swift)
+            }
+            
+            @Comment {
+                ```swift
+                import Foundation
+                import Testing
+                @testable import Swift_Island
+
+                struct KeychainManagerTests {
+
+                    private var mockManager: MockKeychainManager!
+
+                    init() {
+                        mockManager = MockKeychainManager()
+                    }
+
+                    struct TestObject: Codable, Equatable {
+                        let id: Int
+                        let name: String
+                    }
+
+                    @Test func testStoreAndRetrieveDecodableObject() throws {
+
+                        //TODO: Test storing and retrieving of decodable object `TestObject`
+
+                        // Given
+                        let testKey = KeychainAttrAccount.tickets
+                        let testObject = TestObject(id: 1, name: "SampleObject")
+
+                        // TODO: Ensure key doesn't exist before storing by using #require macro
+                        try #require(mockManager.get(key: testKey) == nil)
+
+                        try mockManager.store(key: testKey, data: testObject)
+
+                        let retrievedObject: TestObject? = try mockManager.get(key: testKey)
+                        #expect(retrievedObject == testObject)
+                    }
+
+                }
+
+
+                class MockKeychainManager: KeychainManaging {
+                    private var storage: [String: Data] = [:]
+
+                    func get(key: KeychainAttrAccount) throws -> String? {
+                        guard let data = storage[key.rawValue], let value = String(data: data, encoding: .utf8) else { return nil }
+                        return value
+                    }
+
+                    func get<T: Decodable>(key: KeychainAttrAccount) throws -> T? {
+                        guard let data = storage[key.rawValue] else { return nil }
+                        return try JSONDecoder().decode(T.self, from: data)
+                    }
+
+                    func delete(key: KeychainAttrAccount) throws {
+                        storage[key.rawValue] = nil
+                    }
+
+                    func store<T: Encodable>(key: KeychainAttrAccount, data: T) throws {
+                        let encodedData = try JSONEncoder().encode(data)
+                        storage[key.rawValue] = encodedData
+                    }
+                }
+                ```
+            }
+            
+            @Step {
+                It’s good practice to run your tests under various conditions to ensure you catch edge cases, but this previously took lots of time and writing a separate test for every possible variation is a maintenance nightmare. With Swift Testing, you can easily run a single test function with many different arguments.
+                
+                Let's get back to previous tests called `testInitWithValues()` and try to parameterized with different values.
+                
+                
+                @Code(name: "ContactDataTests.swift", file: 08-test-parameterized.swift) {
+                    @Image(source: 03-test-contactdata-init-with-arguments.png, alt: "A screenshot of the test result after implementing `testVCardGeneration`")
+                }
+            }
+            
+            @Comment {
+                ```swift  
+                struct ContactDataTests {
+
+                    // Test initialization and basic property assignment
+
+                    @Test func testInitWithValues() {
+                        let contact = ContactData(name: "John Doe", company: "Tech Corp", phone: "1234567890", email: "john@example.com", url: "https://example.com")
+
+                        // Use `#expect` to check every property
+                        #expect(contact.name == "John Doe")
+                        #expect(contact.company == "Tech Corp")
+                        #expect(contact.phone == "1234567890")
+                        #expect(contact.email == "john@example.com")
+                        #expect(contact.url == "https://example.com")
+                    }
+
+                    @Test(
+                        "Check various contact data",
+                        arguments: [
+                            ("John Doe", "Tech Corp", "1234567890", "john@example.com", "https://example.com"),
+                            ("", "", "", "", ""),
+                            ("Jane", "Startup Inc", "0987654321", "jane@example.com", "https://janesite.com")
+                        ]
+                    )
+                    func testInitialWithValues(name: String, company: String, phone: String, email: String, url: String) {
+                        let contact = ContactData(name: name, company: company, phone: phone, email: email, url: url)
+                        #expect(contact.name == name)
+                        #expect(contact.company == company)
+                        #expect(contact.phone == phone)
+                        #expect(contact.email == email)
+                        #expect(contact.url == url)
+                    }
+                }
+
+                ```
+            }
+        }
+    }
+    
+    @Section(title: "Organise your tests") {
+        
+        In this new approach to testing, you have a lot more freedom in how you organize your tests. You can either declare them all as global functions or encapsulate them by purpose under either a `struct`, an `actor` or a `final class`.
+        
+        These types are called **Suites** in Swift Testing. A type can be marked as a suite in one of two ways:
+        
+        - *Explicitly* by decorating the type with the `@Suite` macro. Doing so treats all methods in the type as tests and removes the need to add the `@Test` macro to each case.
+        
+        - *Implicitly* by NOT decorating the type with the `@Suite macro and adding the `@Test` macro to each test.
+        
+        So organize the tests in ``ContactDataTests`` or ``KeychainManagerTests`` classes in Suites.
+        
+        @Code(name: "ContactDataTests.swift", file: 09-test-suite.swift)
+        
+        @Steps {
+            
+            @Step {
+                In ``ContactDataTests``, you can group tests around initalization and create another group for another purpose. What is missing now is test on encoding.
+                Add them, run the whole suite and observe results on Project Navigator.
+                
+                @Code(name: "ContactDataTests.swift", file: 10-test-keychain-suite.swift)
+            }
+            
+            @Step {
+                Add more test functions in ``KeychainManagerTests`` and regroup them as @Suite.
+                
+                @Code(name: "ContactDataTests.swift", file: 11-contactData-all-tests.swift)
+            }
+            
+        }
+        
+    }
+    
+    @Section(title: "Custom names/ Display names") {
+        
+        You can override the way that tests and suites are named and shown in the test navigator or test reports by passing a string to their respective macros:
+        
+        @Steps {
+                        
+            @Step {
+                Add a custom name for your test and/or suites. 
+                
+                @Code(name: "ContactDataTests.swift", file: 12-custom-names.swift) {
+                    @Image(source: 04-custom-names.png, alt: "A screenshot of the project navigator with results after putting custom names")
+                }
+            }
+        }
+    }
+    
+    @Section(title: "Traits") {
+        Traits are a way to customize your Swift Testing tests. They can be used to add metadata such as tags or names to tests and to determine how and when they run.
+        
+        There are several built-in traits that you can use to customize your tests and you will need to implement them all.
+        Pass built-in traits to test functions or suite types to comment, categorize, classify, and modify runtime behaviors. 
+        
+        Previously when using arguments, we gave a display name to the test. A display name is an example of a trait.
+        Traits can do several things: they can add descriptive information about a test; they can customize when or whether a test runs; or they can modify how a test behaves.
+                
+        @Steps {
+            
+            On the Swift Island App, let's get back to the ``ContactDataTests.swift`` class and modify it at your convenience.
+            
+            @Step {
+                Disable a test. 
+                                
+                @Code(name: "ContactDataTests.swift", file: 14-traits-disable-test.swift, previousFile: 13-contactData-traits.swift) {
+                    @Image(source: 05-traits-skipped-test.png, alt: "A screenshot of the project navigator with results after skipping/disabling a test")
+                }
+            }
+            
+            The test will now always be skipped.
+            
+            
+            @Step {
+                Reference issue from a bug tracker. 
+                
+                @Code(name: "ContactDataTests.swift", file: 15-traits-refers-bug.swift, previousFile: 13-contactData-traits.swift) {
+                    @Image(source: 06-traits-refers-bug.png, alt: "A screenshot of the project navigator with results after specifying a bug")
+                }
+            }
+            
+            @Step {
+                Add custom tags. 
+                
+                @Code(name: "ContactDataTests.swift", file: 16-traits-custom-tags.swift, previousFile: 13-contactData-traits.swift)
+            }
+            
+            @Step {
+                When you only want to run a test in certain conditions, you can use traits to control that.
+                @Code(name: "ContactDataTests.swift", file: 17-traits-conditions.swift, previousFile: 13-contactData-traits.swift)
+            }
+            
+            @Step {
+                Some traits influence how a test actually behaves, such as imposing a time limit.
+                @Code(name: "ContactDataTests.swift", file: 18-traits-time-limit.swift, previousFile: 13-contactData-traits.swift)
+            }
+            
+            @Step {
+                Suites run tests in parallel by default in contrast to `XCTestCases`, which run tests serially. While running tests in parallel is the way to go, you might face some errors due to shared state between tests on some legacy codebases. If you need to run tests serially, you can pass the the `.serialized` tag to the `@Suite` macro
+                @Code(name: "ContactDataTests.swift", file: 19-traits-serialized.swift, previousFile: 13-contactData-traits.swift)
+            }
+            
+            @Step {
+                Let’s say that you have multiple implementations of your code that are only available on specific platforms or OS versions.
+                Similarly to what you would do with your production code, you can mark your tests with the same OS requirements
+                @Code(name: "ContactDataTests.swift", file: 20-traits-os-conditions.swift, previousFile: 13-contactData-traits.swift)
+            }
+        }
+    }
+    
+    We can go further in Swift syntax, there is still a lot to discover which is the goal of the next chapter 😎.
+}

@@ -1,0 +1,97 @@
+@Tutorial(time: 10) {
+    @Intro(title: "Getting Started") {
+        We will explore ways to set up Swift Testing in your projects or frameworks.
+        
+        @Image(source: swift-testing-hero-dark.png, alt: "Swift Testing illustration.")
+    }
+    
+    @Section(title: "Getting Started with Swift Testing with a new project") {
+        @ContentAndMedia {
+            Create and configure a new Xcode project that uses Swift Testing.
+            
+            @Image(source: swift-testing-hero-dark.png, alt: "A screenshot of the template selector in Xcode. In the top row, iOS is selected as the platform. In the Application section, App is selected as the template; there's a highlight placed over the Next button at the lower-right of the sheet..")
+        }
+        
+        @Steps {
+            
+            @Step {
+                Create a new project: File > New > Project...
+                For your project template, choose iOS > App and click Next
+                
+                @Image(source: 1-create-project.png, alt: "A screenshot of the template selector in Xcode. In the top row, iOS is selected as the platform. In the Application section, App is selected as the template; there's a highlight placed over the Next button at the lower-right of the sheet..")
+            }
+            
+            @Step {
+                Setup Project name and organization identifier.
+                
+                @Image(source: 2-new-project-options.png, alt: "A screenshot of the project option selector in Xcode.")
+            }
+            
+            @Step {
+                Select _SwiftUI_ for the interface, _Swift_ as the Language
+                Select Testing system as _Swift Testing with XCTest UI Tests_ and click on Next.
+                
+                @Image(source: 3-select-testing-system.png, alt: "A screenshot of the project option selector in Xcode where we can choose Testing System.")
+            }
+            
+            @Step {
+                Under Test target, open generated test files. You will see the import and a generated Test example.
+                Unlike _XCTest_, `structs` are created instead of `classes`.
+                @Code(name: "SwiftIslandWorkshopTests.swift", file: 01-swift-testing-init.swift)
+            }
+            
+            @Comment {
+                This is an example of a comment within a tutorial. The text contained within a `@Comment` directive does not get rendered in a built tutorial.
+            } 
+            
+            @Step {
+                Edit the test function like the code below and try to run it. Do not worry about the syntax and try to make it pass.
+                
+                @Code(name: "SwiftIslandWorkshopTests.swift", file: 02-hello-swift-island.swift) {
+                    @Image(source: 4-passing-tests.png, alt:"A screenshot that shows the recap when running tests.")
+                }
+                
+            }
+        }
+    }
+    
+    @Section(title: "Getting Started with Swift Testing in an existing project") {
+        @ContentAndMedia {
+            With either the SwiftIsland project or any package, frameworks or projets on your own, under test folder, create a new Test file from template
+            
+            @Image(source: 5-new-file-from-template.png, alt: "Window selector for")
+        }
+        
+        @Steps {
+            @Step {
+                Select the _Swift Testing Unit Test_ template file.
+                
+                @Image(source: 6-select-swift-testing-template-file.png)
+            } 
+            
+            @Step {
+                Name your test file and click _Create_.
+                In the _SwiftIsland_ app, we create a Test Class called `ContactDataTests` to verify NFC Card generation of a Contact.
+                
+                @Image(source: 7-create-contactdata-test-file.png)
+            } 
+            
+            @Step {
+                You just have to autocomplete the functio name and everything is set in place.
+                
+                @Code(name: "ContactDataTests.swift", file: 03-contactdatatests-setup.swift) {
+                    @Image(source: 8-created-test-file.png, alt: "Create new test file using Swift Testing")
+                }
+            }    
+            
+            @Step {
+                If we need to test our code, we will need to use the `@testable` attribute.
+                This will give us the possibility to test components with internal`access level outside of our app module, that means our test target.
+                
+                @Code(name: "ContactDataTests.swift", file: 04-name-test-function.swift)
+            }    
+            
+            The following chapter will be focused on Swift Testing essentials like defining test functions organizing them.
+        }
+    }
+}
