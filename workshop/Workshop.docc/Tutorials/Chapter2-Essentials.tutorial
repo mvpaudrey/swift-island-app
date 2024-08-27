@@ -1,6 +1,6 @@
 @Tutorial(time: 30) {
     @Intro(title: "Essentials") {
-        This Chapter is dedicated to essentials on Swift Testing. You will learn to write basic test functions and find a way to organise them using Test suites.
+        This chapter is dedicated to essentials on Swift Testing. You will learn to write basic test functions and find a way to organise them using Test suites.
         
         @Image(source: swift-testing-hero-dark.png, alt: "Swift Testing illustration.")
     }
@@ -14,154 +14,148 @@
         
         @Steps {
             
-            We will discover other macros along the way. The first one is ``#expect`` macro.
+            We will discover other macros along the way. The first one is `#expect` macro. We've seen it in the last step of our first chapter.
             
             @Step {
-                [#expect Macro] (https://developer.apple.com/documentation/testing/expect(_:_:sourcelocation:))
+                ![#expect Macro] (https://developer.apple.com/documentation/testing/expect(_:_:sourcelocation:))
                 
-                `#expect` Macro check that an expectation has passed after a condition has been evaluated.
-                
+                `#expect` macro checks that an expectation has passed after a condition has been evaluated.
                 To declare a test function, write a Swift function declaration that doesn’t take any arguments, then prefix its name with the `@Test attribute
-                
                 1. Open the previous created test file add new function with @Test attribute
                 2. Use ``#expect`` macro to write tests
                 
                 @Code(name: "ContactDataTests.swift", file: 05-use-expect.swift) {
                     @Image(source: 01-test-init-passed.png, alt: "A screenshot of the test result after implementing `testInitWithValues`")
-                }             
-            }
-            
-            @Comment {
-                ```swift
-                struct ContactDataTests {
+                } 
+                
+                @Comment {
+                    ```swift
+                    struct ContactDataTests {
 
-                    // Test initialization and basic property assignment
-                    @Test func testInitWithValues() {
-                        let contact = ContactData(name: "John Doe", company: "Tech Corp", phone: "1234567890", email: "john@example.com", url: "https://example.com")
+                        // Test initialization and basic property assignment
+                        @Test func testInitWithValues() {
+                            let contact = ContactData(name: "John Doe", company: "Tech Corp", phone: "1234567890", email: "john@example.com", url: "https://example.com")
 
-                        // Use `#expect` to check every property
-                        #expect(contact.name == "John Doe")
-                        #expect(contact.company == "Tech Corp")
-                        #expect(contact.phone == "1234567890")
-                        #expect(contact.email == "john@example.com")
-                        #expect(contact.url == "https://example.com")
+                            // Use `#expect` to check every property
+                            #expect(contact.name == "John Doe")
+                            #expect(contact.company == "Tech Corp")
+                            #expect(contact.phone == "1234567890")
+                            #expect(contact.email == "john@example.com")
+                            #expect(contact.url == "https://example.com")
+                        }
                     }
+                    ```
                 }
-                ```
+
             }
             
-            In the same way we have tested initialization, let's continue by testing a computed property from the ``ContactData`` which is `vCard`.
-            If you are using your own project, write a test that can validate this assertion
             
             @Step {
                 
-                Implement `testVCardGeneration` test function. using #expect. (see picture)
+                In the same way we have tested initialization, let's continue by testing a computed property from the ``ContactData`` which is `vCard`. If you are using your own project, write a test that can validate this assertion. Implement `testVCardGeneration` test function. using #expect. (see picture)
                 
                 @Code(name: "ContactDataTests.swift", file: 06-test-contactdata-vcard.swift) {
                     @Image(source: 02-contact-vCard-test-passed.png, alt: "A screenshot of the test result after implementing `testVCardGeneration`")
                 } 
-            }
-            
-            @Comment {
                 
-                ```swift
-                @Test func testVCardGeneration() async throws {
-                    let contact = ContactData(name: "John Doe", company: "Tech Corp", phone: "1234567890", email: "john@example.com", url: "https://example.com")
+                @Comment {
+                    
+                    ```swift
+                    @Test func testVCardGeneration() async throws {
+                        let contact = ContactData(name: "John Doe", company: "Tech Corp", phone: "1234567890", email: "john@example.com", url: "https://example.com")
 
-                    let expectedVCard = """
-                        BEGIN:VCARD
-                        VERSION:3.0
-                        FN:John Doe
-                        ORG:Tech Corp
-                        TEL:1234567890
-                        EMAIL:john@example.com
-                        URL:https://example.com
-                        END:VCARD
-                        """
+                        let expectedVCard = """
+                            BEGIN:VCARD
+                            VERSION:3.0
+                            FN:John Doe
+                            ORG:Tech Corp
+                            TEL:1234567890
+                            EMAIL:john@example.com
+                            URL:https://example.com
+                            END:VCARD
+                            """
 
-                    #expect(contact.vCard == expectedVCard)
+                        #expect(contact.vCard == expectedVCard)
+                    }
+                    ```
                 }
-                ```
+
             }
-            
+                    
             @Step {
                 
                 [#require Macro] (https://developer.apple.com/documentation/testing)
                 
-                `#require` checks that an expectation has passed after a condition has been evaluated and throw an error if it failed.
-                
-                In Swift Island app, there is a ``KeychainManager`` class want to unit test.
-                
-                1. Create a `KeychainManagerTests.swift` class alongside other tests class
-                2. Write a Unit Test on Keychain manager to test storing and retrieving of a decodable object 
+                `#require` checks that an expectation has passed after a condition has been evaluated and throw an error if it failed.In Swift Island app, there is a ``KeychainManager`` class want to unit test. Create a `KeychainManagerTests.swift` class alongside other tests class.Write a Unit Test on Keychain manager to test storing and retrieving of a decodable object 
                 
                 @Code(name: "KeychainManagerTests.swift", file: 07-test-keychainmanager.swift)
-            }
-            
-            @Comment {
-                ```swift
-                import Foundation
-                import Testing
-                @testable import Swift_Island
+                
+                @Comment {
+                    ```swift
+                    import Foundation
+                    import Testing
+                    @testable import Swift_Island
 
-                struct KeychainManagerTests {
+                    struct KeychainManagerTests {
 
-                    private var mockManager: MockKeychainManager!
+                        private var mockManager: MockKeychainManager!
 
-                    init() {
-                        mockManager = MockKeychainManager()
+                        init() {
+                            mockManager = MockKeychainManager()
+                        }
+
+                        struct TestObject: Codable, Equatable {
+                            let id: Int
+                            let name: String
+                        }
+
+                        @Test func testStoreAndRetrieveDecodableObject() throws {
+
+                            //TODO: Test storing and retrieving of decodable object `TestObject`
+
+                            // Given
+                            let testKey = KeychainAttrAccount.tickets
+                            let testObject = TestObject(id: 1, name: "SampleObject")
+
+                            // TODO: Ensure key doesn't exist before storing by using #require macro
+                            try #require(mockManager.get(key: testKey) == nil)
+
+                            try mockManager.store(key: testKey, data: testObject)
+
+                            let retrievedObject: TestObject? = try mockManager.get(key: testKey)
+                            #expect(retrievedObject == testObject)
+                        }
+
                     }
 
-                    struct TestObject: Codable, Equatable {
-                        let id: Int
-                        let name: String
+
+                    class MockKeychainManager: KeychainManaging {
+                        private var storage: [String: Data] = [:]
+
+                        func get(key: KeychainAttrAccount) throws -> String? {
+                            guard let data = storage[key.rawValue], let value = String(data: data, encoding: .utf8) else { return nil }
+                            return value
+                        }
+
+                        func get<T: Decodable>(key: KeychainAttrAccount) throws -> T? {
+                            guard let data = storage[key.rawValue] else { return nil }
+                            return try JSONDecoder().decode(T.self, from: data)
+                        }
+
+                        func delete(key: KeychainAttrAccount) throws {
+                            storage[key.rawValue] = nil
+                        }
+
+                        func store<T: Encodable>(key: KeychainAttrAccount, data: T) throws {
+                            let encodedData = try JSONEncoder().encode(data)
+                            storage[key.rawValue] = encodedData
+                        }
                     }
-
-                    @Test func testStoreAndRetrieveDecodableObject() throws {
-
-                        //TODO: Test storing and retrieving of decodable object `TestObject`
-
-                        // Given
-                        let testKey = KeychainAttrAccount.tickets
-                        let testObject = TestObject(id: 1, name: "SampleObject")
-
-                        // TODO: Ensure key doesn't exist before storing by using #require macro
-                        try #require(mockManager.get(key: testKey) == nil)
-
-                        try mockManager.store(key: testKey, data: testObject)
-
-                        let retrievedObject: TestObject? = try mockManager.get(key: testKey)
-                        #expect(retrievedObject == testObject)
-                    }
-
+                    ```
                 }
 
-
-                class MockKeychainManager: KeychainManaging {
-                    private var storage: [String: Data] = [:]
-
-                    func get(key: KeychainAttrAccount) throws -> String? {
-                        guard let data = storage[key.rawValue], let value = String(data: data, encoding: .utf8) else { return nil }
-                        return value
-                    }
-
-                    func get<T: Decodable>(key: KeychainAttrAccount) throws -> T? {
-                        guard let data = storage[key.rawValue] else { return nil }
-                        return try JSONDecoder().decode(T.self, from: data)
-                    }
-
-                    func delete(key: KeychainAttrAccount) throws {
-                        storage[key.rawValue] = nil
-                    }
-
-                    func store<T: Encodable>(key: KeychainAttrAccount, data: T) throws {
-                        let encodedData = try JSONEncoder().encode(data)
-                        storage[key.rawValue] = encodedData
-                    }
-                }
-                ```
             }
-            
+                        
             @Step {
                 It’s good practice to run your tests under various conditions to ensure you catch edge cases, but this previously took lots of time and writing a separate test for every possible variation is a maintenance nightmare. With Swift Testing, you can easily run a single test function with many different arguments.
                 
@@ -230,14 +224,14 @@
         @Steps {
             
             @Step {
-                In ``ContactDataTests``, you can group tests around initalization and create another group for another purpose. What is missing now is test on encoding.
+                In `ContactDataTests`, you can group tests around initalization and create another group for another purpose. What is missing now is test on encoding.
                 Add them, run the whole suite and observe results on Project Navigator.
                 
                 @Code(name: "ContactDataTests.swift", file: 10-test-keychain-suite.swift)
             }
             
             @Step {
-                Add more test functions in ``KeychainManagerTests`` and regroup them as @Suite.
+                Add more test functions in `KeychainManagerTests` and regroup them as @Suite.
                 
                 @Code(name: "ContactDataTests.swift", file: 11-contactData-all-tests.swift)
             }

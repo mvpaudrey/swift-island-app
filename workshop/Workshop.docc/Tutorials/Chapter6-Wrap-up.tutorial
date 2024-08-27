@@ -1,28 +1,29 @@
-@Tutorial(time: 5) {
+@Tutorial(time: 2) {
     @Intro(title: "Wrapping up") {
-        <#text#>
         
-        @Image(source: <#file#>, alt: "<#accessible description#>")
+        @Image(source: wrap-up.png, alt: "wrap up illustration")
     }
     
-    @Section(title: "<#text#>") {
+    @Section(title: "Swift Testing") {
         @ContentAndMedia {
-            <#text#>
             
-            @Image(source: <#file#>, alt: "<#accessible description#>")
+            To start, we looked at how Swift Testing’s APIs help you write expressive tests. With parameterization, you can exercise many different cases with a single test.
+
+            Tools such as suites and tags help you organize and document your test code.
+
+            And finally, testing in parallel can reduce the time it takes to run your tests and may help identify dependencies between them.
+            
+            @Image(source: swift-testing-hero-dark.png, alt: "Swift Testing illustration.")
         }
         
         @Steps {
+            
             @Step {
-                <#text#>
-                
-                @Image(source: <#file#>, alt: "<#accessible description#>")
+                Pull requests on https://github.com/SwiftIsland/app using Swift Testing? 
             }
             
             @Step {
-                <#text#>
-                
-                @Code(name: "<#display name#>", file: <#filename.swift#>)
+                Congratulate yourself for this workshop and enjoy Swift Island.
             }
         }
     }

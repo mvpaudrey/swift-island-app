@@ -7,9 +7,12 @@
     
     @Section(title: "Migrate an existing method or test class written using XCTest") {
         @ContentAndMedia {
+            
+            @Image(source: swift-testing-hero-dark.png, alt: "Swift Testing illustration.")
+
             The testing library provides much of the same functionality of XCTest, but uses its own syntax to declare test functions and types. Here, you’ll learn how to convert XCTest-based content to use the testing library instead.
             
-            The following table includes a list of the various XCTAssert() functions and their equivalents in the testing library:
+            The following table includes a list of the various XCTAssert() functions and their equivalents in the new Testing library:
             
             XCTest       | Swift Testing                          
             ------------ | ------------------------------------- 
@@ -35,32 +38,25 @@
         
         @Steps {
             
-            The goal will be to migrate from a test class written with XCTest to Swift Testing
+            The overall goal will be to migrate from a test class written with XCTest to Swift Testing either on the Swift Island or on your own project.
+            But first let's review some steps.
+            
             @Step {
                 It starts with the module import to replace.
                 
-                // Before
-                import XCTest
-                
-                // After
-                import Testing
+                @Code(name: "", file: 40-migrate-import.swift)
             }
             
             @Step {
-                Convert test classes
+                Converting test classes.
                 
-                ```swift
-                // Before
-                class FoodTruckTests: XCTestCase {
-                  ...
-                }
+                @Code(name: "", file: 41-migrate-convert-test-classes.swift)
+            }
+            
+            @Step {
+                TODO: Implement one of your classes
                 
-                // After
-                struct FoodTruckTests {
-                  ...
-                }
-                ```
-                
+                @Code(name: "", file: 40-migrate-import.swift)
             }
         }
     }

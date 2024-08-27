@@ -14,7 +14,7 @@
         @TutorialReference(tutorial: "doc:Chapter1-Getting-started")
     }
     
-    @Chapter(name: "Swift Testing") {
+    @Chapter(name: "Swift Testing Essentials") {
         
         Get to know the essentials of Swift Testing.
         
@@ -24,38 +24,37 @@
     }
     
     @Chapter(name: "Adding Advanced Features") {
+        Let's move to more advanced features.
+        
         @Image(source: chapter2-swift-testing-essentials.png, alt: "A wireframe for the Swift Testing Essentials.")
 
-        @TutorialReference(tutorial: "doc:Chapter3-Migrating-Test-from-XCTest")
+        @TutorialReference(tutorial: "doc:Chapter3-Advanced-Features")
     }
     
-    @Chapter(name: "Asynchronous conditions") {
+    @Chapter(name: "Continuous Integration") {
+        
+        Xcode cloud for example integrates very well with Swift Testing. Let's see our it presents.
+        
         @Image(source: chapter2-swift-testing-essentials.png, alt: "A wireframe for the Swift Testing Essentials.")
         
-        Swift Testing runs test functions in parallel by default, regardless of whether they are synchronous or asynchronous. This is a notable difference from XCTest, which only supports parallelization using multiple processes, each running one test at a time.
-        
         @Comment {
+            Swift Testing runs test functions in parallel by default, regardless of whether they are synchronous or asynchronous. This is a notable difference from XCTest, which only supports parallelization using multiple processes, each running one test at a time.
+            
             Test functions can be isolated to a global actor like MainActor when needed. Next, the order in which your tests run is randomized. This helps surface hidden dependencies between tests and exposes areas where you may need to make adjustments.
         }
 
-        @TutorialReference(tutorial: "doc:Chapter4-")
+        @TutorialReference(tutorial: "doc:Chapter4-Migrating-Test-from-XCTest")
     }
     
     @Chapter(name: "Integrating Swift Testing in Continuous Integration") {
         @Image(source: chapter2-swift-testing-essentials.png, alt: "A wireframe for the Swift Testing Essentials.")
 
-        @TutorialReference(tutorial: "doc:Chapter5-")
+        @TutorialReference(tutorial: "doc:Chapter5-Continuous-Integration")
     }
     
-    @Chapter(name: "P") {
+    @Chapter(name: "Wrapping up") {
         @Image(source: chapter2-swift-testing-essentials.png, alt: "A wireframe for the Swift Testing Essentials.")
 
-        @TutorialReference(tutorial: "doc:Chapter6-")
-    }
-    
-    @Chapter(name: "Conclusion and Next Steps") {
-        @Image(source: chapter2-swift-testing-essentials.png, alt: "A wireframe for the Swift Testing Essentials.")
-
-        @TutorialReference(tutorial: "doc:Chapter7-")
+        @TutorialReference(tutorial: "doc:Chapter6-Wrap-up")
     }
 }

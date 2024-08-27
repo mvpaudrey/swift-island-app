@@ -1061,10 +1061,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V38QRBT6X5;
+				DEVELOPMENT_TEAM = VEUVN4UK7N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwiftIslandWidgets/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Swift Island Widgets";
+				INFOPLIST_KEY_CFBundleDisplayName = "ABCD Workshop Widgets";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 AppTrix AB. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1072,7 +1072,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = "${MARKETING_VERSION}";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.swiftisland.app.widgets;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zebaze.swiftisland.app.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1091,10 +1091,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V38QRBT6X5;
+				DEVELOPMENT_TEAM = VEUVN4UK7N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwiftIslandWidgets/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Swift Island Widgets";
+				INFOPLIST_KEY_CFBundleDisplayName = "ABCD Workshop Widgets";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 AppTrix AB. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1102,7 +1102,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = "${MARKETING_VERSION}";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.swiftisland.app.widgets;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zebaze.swiftisland.app.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1244,12 +1244,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftIslandApp/Preview Content\"";
-				DEVELOPMENT_TEAM = V38QRBT6X5;
+				DEVELOPMENT_TEAM = VEUVN4UK7N;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SwiftIslandApp-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Swift Island";
+				INFOPLIST_KEY_CFBundleDisplayName = "ABCD Testing ";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NFCReaderUsageDescription = "You can use NFC tags to share contact details throughout the conference";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We only use your location to verify that you are at the conference. Once we know, we don't use it anymore.";
@@ -1264,7 +1264,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = "${MARKETING_VERSION}";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.swiftisland.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zebaze.swiftisland.app;
 				PRODUCT_NAME = "Swift Island";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1288,12 +1288,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftIslandApp/Preview Content\"";
-				DEVELOPMENT_TEAM = V38QRBT6X5;
+				DEVELOPMENT_TEAM = VEUVN4UK7N;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SwiftIslandApp-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Swift Island";
+				INFOPLIST_KEY_CFBundleDisplayName = "ABCD Testing";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NFCReaderUsageDescription = "You can use NFC tags to share contact details throughout the conference";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We only use your location to verify that you are at the conference. Once we know, we don't use it anymore.";
@@ -1308,7 +1308,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = "${MARKETING_VERSION}";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.swiftisland.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zebaze.swiftisland.app;
 				PRODUCT_NAME = "Swift Island";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1328,7 +1328,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V38QRBT6X5;
+				DEVELOPMENT_TEAM = VEUVN4UK7N;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = "${MARKETING_VERSION}";
@@ -1349,7 +1349,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V38QRBT6X5;
+				DEVELOPMENT_TEAM = VEUVN4UK7N;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = "${MARKETING_VERSION}";

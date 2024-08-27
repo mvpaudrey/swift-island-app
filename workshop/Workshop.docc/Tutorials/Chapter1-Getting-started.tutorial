@@ -1,4 +1,4 @@
-@Tutorial(time: 10) {
+@Tutorial(time: 5) {
     @Intro(title: "Getting Started") {
         We will explore ways to set up Swift Testing in your projects or frameworks.
         
@@ -28,7 +28,7 @@
             }
             
             @Step {
-                Select _SwiftUI_ for the interface, _Swift_ as the Language
+                Select _SwiftUI_ for the interface
                 Select Testing system as _Swift Testing with XCTest UI Tests_ and click on Next.
                 
                 @Image(source: 3-select-testing-system.png, alt: "A screenshot of the project option selector in Xcode where we can choose Testing System.")
@@ -91,7 +91,7 @@
                 @Code(name: "ContactDataTests.swift", file: 04-name-test-function.swift)
             }    
             
-            The following chapter will be focused on Swift Testing essentials like defining test functions organizing them.
+            The following chapter will be focused on Swift Testing essentials like defining test functions and organizing them.
         }
     }
 }

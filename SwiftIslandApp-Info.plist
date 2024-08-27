@@ -4,16 +4,14 @@
 <dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>slack</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>WorkSans-Bold.ttf</string>
 		<string>WorkSans-Regular.ttf</string>
 	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We only use your location to verify that you are at the conference. Once we know, we don&apos;t use it anymore.</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>slack</string>
-    </array>
 </dict>
 </plist>

@@ -1,0 +1,114 @@
+@Tutorial(time: 20) {
+    @Intro(title: "Going further") {
+        Going further with Swift Testing.
+        
+        @Image(source: swift-testing-hero-dark.png, alt: "Going further illustration")
+    }
+    
+    @Section(title: "Advanced Swift Testing features") {
+        @ContentAndMedia {
+            
+            @Image(source: swift-testing-hero-dark.png, alt: "Swift Testing illustration.")
+        }
+        
+        @Steps {
+            @Step {
+                Serialized trait with nested suites.
+                
+                @Code(name: "ContactDataTests.swift", file: 21-traits-nested-serialized.swift)
+            }
+            
+            @Step {
+                Validation of a successful throwing function
+                
+                @Code(name: "BrewingTests", file: 22-successful-throwing-function.swift)
+                
+                @Comment {
+                    Error handling is often less tested but is an important part of the user’s experience. You want to make sure your code fails gracefully in the face of invalid input and unexpected conditions. The expect throws macro make this workflow much easier by building on expectations.
+                }
+            }
+            
+            @Step {
+                Validating a type of error.
+                
+                @Code(name: "BrewingTests", file: 23-validating-type-of-error.swift)
+            }
+            
+            @Step {
+                Validating specific error
+                
+                @Code(name: "BrewingTests", file: 24-validating-specific-error.swift)
+            }
+            
+            @Step {
+                Complicated validations.
+                
+                @Code(name: "BrewingTests", file: 25-complicated-validations.swift)
+            }
+            
+            @Step {
+                Throwing expectation
+                
+                @Code(name: "BrewingTests", file: 26-throwing-expectation.swift)
+            }
+            
+            @Step {
+                Required expectations
+                
+                @Code(name: "BrewingTests", file: 27-required-expectations.swift)
+            }
+            
+            @Step {
+                Conforming to `CustomTestStringConvertible.
+                
+                @Code(name: "SoftServeTests", file: 28-parameterized-tests.swift)
+                
+                @Comment {
+                    ```swift
+                    @Suite("Conforming to CustomTestStringConvertible")
+                    struct SoftServeTests {
+
+                        // Parameterizing a test
+                        @Test
+                        func doesContainNuts() throws{
+                            for flavor in [Flavor.vanilla, .chocolate, .strawberry, .mintChip] {
+                                try #require(!flavor.containsNuts)
+                            }
+                        }
+
+                        @Test(arguments: [
+                            SoftServe(flavor: .vanilla, container: .cone, toppings: [.sprinkles]),
+                            SoftServe(flavor: .chocolate, container: .cone, toppings: [.sprinkles]),
+                            SoftServe(flavor: .pineapple, container: .cup, toppings: [.whippedCream])
+                        ])
+                        func softServeFlavors(_ softServe: SoftServe) {
+                            switch softServe {
+                                // Check if the description matches what is expected
+
+                            case SoftServe(flavor: .vanilla, container: .cone, toppings: [.sprinkles]):
+                                #expect(softServe.testDescription == "vanilla in a cone")
+
+                            case SoftServe(flavor: .chocolate, container: .cone, toppings: [.sprinkles]):
+                                #expect(softServe.testDescription == "chocolate in a cone")
+
+                            case SoftServe(flavor: .pineapple, container: .cup, toppings: [.whippedCream]):
+                                #expect(softServe.testDescription == "pineapple in a cup")
+
+                            default:
+                                // Fail the test if none of the cases match (optional)
+                                Issue.record("Unexpected soft serve combination")
+                            }
+                        }
+                    }
+
+                    ```
+                }
+            }
+            
+            @Step {
+                Now that you have all the essentials and some advanced features, the next chapter will be focused on going through some test classes written using `XCTest` and then migrate to Swift Testing syntax. Good luck!
+            }
+            
+        }
+    }
+}

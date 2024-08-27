@@ -1,30 +1,142 @@
-@Tutorial(time: 10) {
+@Tutorial(time: 5) {
     @Intro(title: "Setting Up Continuous Integration for Swift Testing") {
         
-        @Image(source: <#file#>, alt: "<#accessible description#>")
+        @Image(source: continuous-integration.png, alt: "Continuous Integration illustration")
     }
     
-    @Section(title: "<#text#>") {
+    @Section(title: "Xcode Cloud setup") {
         @ContentAndMedia {
             Xcode Cloud has also been updated to support Swift Testing.
             
             Just like in Xcode, you can view the results of your test suites in the Xcode Cloud tab of App Store Connect. This includes details about the traits that have been defined in your tests. When you organize and relate your tests, Xcode can help you gain insight into problems affecting them. Suites and tags make large collections of tests more efficient to navigate and easier to manage. Back to Jonathan to talk about running test in parallel.
 
+            Prerequisite: Have your Xcode set up for at least a Team.
             
-            @Image(source: <#file#>, alt: "<#accessible description#>")
+            @Image(source: swift-testing-hero-dark.png, alt: "Swift Testing illustration.")
         }
         
         @Steps {
+            
             @Step {
-                <#text#>
+                In your target settings, set your team under `Signing and Capabilities`. If you are using SwiftIsland app, please also change the `bundle Identifier`.
                 
-                @Image(source: <#file#>, alt: "<#accessible description#>")
+                @Image(source: project-setup-team.png, alt: "project-setup-team screenshot")
             }
             
             @Step {
-                <#text#>
+                In the report navigator, if you can, Get started with Xcode Cloud.
                 
-                @Code(name: "<#display name#>", file: <#filename.swift#>)
+                @Image(source: xcode-cloud.png, alt: "Xcode report navigator screenshot")
+            }
+            
+            @Step {
+                Select the appropriate product to set, for the Swift Island project, it is gonna be the Swift Island app.
+                
+                @Image(source: xcode-cloud-select-product.png, alt: "Select product screenshot")                
+            }
+            
+            @Step {
+                Select the appropriate team.
+                
+                @Image(source: xcode-cloud-select-team.png, alt: "Select team screenshot")                
+            }
+            
+            @Step {
+                Edit workflow.
+                
+                @Image(source: xcode-cloud-review-workflow.png, alt: xcode-cloud-review-workflow screenshot")                
+            }
+            
+            @Step {
+                Setup environment. Choose appropriate Xcode version.
+                
+                @Image(source: xcode-cloud-workflow-set-environment.png, alt: "xcode-cloud-workflow-set-environment screenshot")                
+            }
+            
+            @Step {
+                On start condition section, Select appropriate branch.
+                
+                @Image(source: xcode-cloud-branch-changes.png, alt: "xcode-cloud-branch-changes screenshot")                
+            }
+            
+            @Step {
+                On Action section, delete Archive action.
+                
+                @Image(source: xcode-cloud-delete-archive-action.png, alt: "xcode-cloud-delete-archive-action screenshot")            
+            }
+            
+            @Step {
+                On Action section, Add Test action and select appropriate Destination, then save
+                
+                @Image(source: xcode-cloud-add-test-action.png, alt: "xcode-cloud-add-test-action screenshot")                
+            }
+            
+            @Step {
+                You will see the recap of the edited Workflow. Click Next.
+                
+                @Image(source: xcode-cloud-edit-workflow-recap.png, alt: "xcode-cloud-edit-workflow-recap screenshot")         
+            }
+            
+            @Step {
+                You will have to grant Github access to your source Code
+                
+                @Image(source: xcode-cloud-grant-access.png, alt: "xcode-cloud-grant-access screenshot")         
+            }
+            
+            @Step {
+                Connect to the App Store and Grant Access.
+                
+                @Image(source: xcode-cloud-apc-start.png, alt: "xcode-cloud-apc-start screenshot")         
+            }
+            
+            @Step {
+                Complete Step on Github. Select repository and save.
+                
+                @Image(source: xcode-cloud-github.png, alt: "xcode-cloud-github screenshot")  
+            }
+            
+            @Step {
+                Access granted on Xcode Code!
+                
+                @Image(source: xcode-cloud-github-access.png, alt: "xcode-cloud-github-access screenshot")         
+            }
+            
+            @Step {
+                App Store Connect will display a successful message.
+                
+                @Image(source: xcode-cloud-apc-access-success.png, alt: "xcode-cloud-apc-access-success screenshot")         
+            }
+            
+            @Step {
+                Now the source code access has been granted.
+                
+                @Image(source: xcode-cloud-grant-access-validated.png, alt: "xcode-cloud-apc-access-success screenshot")         
+            }
+            
+            @Step {
+                After creating app on the App Store we can start build.
+                
+                @Image(source: xcode-cloud-create-app.png, alt: "xcode-cloud-create-app screenshot")         
+            }
+            
+            @Step {
+                We can now observe Test build results
+                
+                @Image(source: test-build-result1.png, alt: "test-build-result1 screenshot")
+            }
+            
+            @Step {
+                @Image(source: test-build-result2.png, alt: "test-build-result2 screenshot")         
+            }
+            
+            @Step {
+                We can observe results in App Store Connect too.
+                
+                @Image(source: test-result-build-apc.png, alt: "test-result-build-apc screenshot")
+                
+                @Comment {
+                    We even have Expected failures section!
+                }
             }
         }
     }
