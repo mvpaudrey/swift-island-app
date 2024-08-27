@@ -24,6 +24,9 @@
             
             @Step {
                 Congratulate yourself for this workshop and enjoy Swift Island.
+                
+                @Image(source: swift-island-logo.png, alt: "Swift Island logo.")
+
             }
         }
     }

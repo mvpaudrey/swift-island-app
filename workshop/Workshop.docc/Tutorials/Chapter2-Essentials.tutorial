@@ -217,7 +217,7 @@
         
         - *Implicitly* by NOT decorating the type with the `@Suite macro and adding the `@Test` macro to each test.
         
-        So organize the tests in ``ContactDataTests`` or ``KeychainManagerTests`` classes in Suites.
+        So organize the tests in `ContactDataTests` or `KeychainManagerTests` classes in Suites.
         
         @Code(name: "ContactDataTests.swift", file: 09-test-suite.swift)
         
@@ -267,7 +267,7 @@
                 
         @Steps {
             
-            On the Swift Island App, let's get back to the ``ContactDataTests.swift`` class and modify it at your convenience.
+            On the Swift Island App, let's get back to the `ContactDataTests.swift` class and modify it at your convenience.
             
             @Step {
                 Disable a test. 

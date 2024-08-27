@@ -8,3 +8,7 @@ import XCTest
 
 // After
 import Testing
+
+struct TestClass {
+
+}

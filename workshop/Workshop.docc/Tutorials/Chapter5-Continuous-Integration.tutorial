@@ -44,7 +44,7 @@
             @Step {
                 Edit workflow.
                 
-                @Image(source: xcode-cloud-review-workflow.png, alt: xcode-cloud-review-workflow screenshot")                
+                @Image(source: xcode-cloud-review-workflow.png, alt: "xcode-cloud-review-workflow screenshot")                
             }
             
             @Step {
@@ -126,6 +126,7 @@
             }
             
             @Step {
+                
                 @Image(source: test-build-result2.png, alt: "test-build-result2 screenshot")         
             }
             

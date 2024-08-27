@@ -7,11 +7,23 @@ import Testing
 import XCTest
 
 // Before
+
 class SwiftIslandTests: XCTestCase {
-  // ...
+  var welcomingGoodies: NSNumber!
+
+  override func setUp() async throws {
+      welcomingGoodies = 5
+  }
+  ...
 }
 
 // After
+
 struct SwiftIslandTests {
-  // ...
+  var welcomingGoodies: NSNumber
+
+  init() async throws {
+      welcomingGoodies = 5
+  }
+  ...
 }
