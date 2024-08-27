@@ -7,11 +7,11 @@ import Testing
 import XCTest
 
 // Before
-class SwiftIslandTests: XCTestCase {
+class AddDataModelTests: XCTestCase {
   // ...
 }
 
 // After
-struct SwiftIslandTests {
+struct AddDataModelTestsAfter {
   // ...
 }

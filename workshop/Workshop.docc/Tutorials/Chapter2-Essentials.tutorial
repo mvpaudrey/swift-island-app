@@ -20,9 +20,7 @@
                 ![#expect Macro] (https://developer.apple.com/documentation/testing/expect(_:_:sourcelocation:))
                 
                 `#expect` macro checks that an expectation has passed after a condition has been evaluated.
-                To declare a test function, write a Swift function declaration that doesn’t take any arguments, then prefix its name with the `@Test attribute
-                1. Open the previous created test file add new function with @Test attribute
-                2. Use ``#expect`` macro to write tests
+                To declare a test function, write a Swift function declaration that doesn’t take any arguments, then prefix its name with the `@Test attribute. Open the previous created test file add new function with @Test attribute. Use `#expect` macro to write tests
                 
                 @Code(name: "ContactDataTests.swift", file: 05-use-expect.swift) {
                     @Image(source: 01-test-init-passed.png, alt: "A screenshot of the test result after implementing `testInitWithValues`")
@@ -216,12 +214,14 @@
         - *Explicitly* by decorating the type with the `@Suite` macro. Doing so treats all methods in the type as tests and removes the need to add the `@Test` macro to each case.
         
         - *Implicitly* by NOT decorating the type with the `@Suite macro and adding the `@Test` macro to each test.
-        
-        So organize the tests in `ContactDataTests` or `KeychainManagerTests` classes in Suites.
-        
-        @Code(name: "ContactDataTests.swift", file: 09-test-suite.swift)
-        
+                
         @Steps {
+            
+            @Step {
+                What you need to do now is organize the tests in `ContactDataTests` or `KeychainManagerTests` classes in Suites.
+                
+                @Code(name: "ContactDataTests.swift", file: 09-test-suite.swift)
+            }
             
             @Step {
                 In `ContactDataTests`, you can group tests around initalization and create another group for another purpose. What is missing now is test on encoding.
@@ -314,8 +314,10 @@
                 Similarly to what you would do with your production code, you can mark your tests with the same OS requirements
                 @Code(name: "ContactDataTests.swift", file: 20-traits-os-conditions.swift, previousFile: 13-contactData-traits.swift)
             }
+            
+            @Step {
+                We can go further in Swift syntax, there is still a lot to discover which is the goal of the next chapter 😎.
+            }
         }
     }
-    
-    We can go further in Swift syntax, there is still a lot to discover which is the goal of the next chapter 😎.
 }

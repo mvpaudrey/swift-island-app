@@ -126,6 +126,7 @@
             }
             
             @Step {
+                If you go to specific test action, you will now see the `Tag` column appearing.
                 
                 @Image(source: test-build-result2.png, alt: "test-build-result2 screenshot")         
             }

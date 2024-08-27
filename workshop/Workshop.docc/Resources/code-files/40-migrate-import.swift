@@ -9,6 +9,6 @@ import XCTest
 // After
 import Testing
 
-struct TestClass {
+struct AddDataModelTests {
 
 }
